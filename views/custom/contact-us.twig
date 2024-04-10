@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html {{ fn('language_attributes') }}>
+<head>
+  <meta charset="{{ fn('bloginfo', 'charset') }}">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {{ fn('wp_head') }}
+  {% block custom_head %}
+  {% endblock %}
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KHJ7BR');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body {{ fn('body_class', language_class) }}>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHJ7BR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="wrapper">
+    {% block header %}
+      {% include "partials/header.twig" %}
+    {% endblock %}
+    {% block slider %}
+    {% endblock %}
+    <div class="main">
+      {% for post in posts %}
+        <div class="contact-us-header">
+          <div class="contact-us-header__inner">
+            {% if language_code == 'he' %}
+              <h1 class="contact-us-header__title">נשמח להיות בקשר</h1>
+              <h2 class="contact-us-header__subtitle">אנו שמחים לעמוד לרשותכם בכל ערוצי התקשורת</h2>
+            {% else %}
+              <h1 class="contact-us-header__title">We will be happy to be in touch</h1>
+            {% endif %}
+            <div class="container">
+              <div class="contact-us-header-icons">
+                <div class="contact-us-header-icons__item">
+                  <a class="contact-us-header-icons__link contact-us-header-icons__link--contact" href="tel:{{phone}}" target="_blank" rel="nofollow">{{phone}}</a>
+                </div>
+                <div class="contact-us-header-icons__item">
+                  <a class="contact-us-header-icons__link contact-us-header-icons__link--location" href="{{map}}" target="_blank" rel="nofollow">{% if language_code == 'he' %}{{address}}{% else %}{{address_en}}{% endif %}</a>
+                </div>
+                <div class="contact-us-header-icons__item">
+                  <a class="contact-us-header-icons__link contact-us-header-icons__link--facebook" href="{{facebook}}" target="_blank" rel="nofollow">{{__('facebook', 'oxboot')}}</a>
+                </div>
+                <div class="contact-us-header-icons__item">
+                  <a class="contact-us-header-icons__link contact-us-header-icons__link--tablet" href="mailto:{{email}}" target="_blank" rel="nofollow">{{email}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      {% for post in posts %}
+        <div class="content">
+          <div class="container">
+            <div class="content__inner">
+              <h2 class="content__title">{{title}}</h2>
+              {{post.content}}
+              {% include "partials/share.twig" %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% block footer %}
+      {% if language_code == 'he' %}
+        {% include "partials/footer.twig" %}
+      {% else %}
+        {% include "partials/footer-en.twig" %}
+      {% endif %}
+    {% endblock %}
+  </div>
+  {% if language_code == 'he' %}
+    {% include "partials/contact.twig" %}
+  {% else %}
+    {% include "partials/contact-en.twig" %}
+  {% endif %}
+  <a href="#" class="back-to-top"></a>
+  {{ fn('wp_footer') }}
+  {% block custom_foot %}
+    <script type="text/javascript">
+      (function($) {
+        $(document).ready(function () {
+          setTimeout(function () {
+            $('.trigger').trigger('click');
+          }, 3000);
+        });
+      })(jQuery);
+    </script>
+  {% endblock %}
+</body>
+</html>

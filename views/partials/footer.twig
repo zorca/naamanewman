@@ -1,0 +1,77 @@
+<footer class="footer">
+  <div class="footer__top">
+    <div class="container">
+      <div class="row">
+        {{ fn('do_shortcode', '[contact-form-7 id="1260" title="Contact Us - He"]') }}
+      </div>
+    </div>
+  </div>
+  <div class="footer__middle">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="footer__title">קישורים</div>
+          <ul class="footer-list">
+            {% if menu_additional %}
+              {% for item in menu_additional.get_items %}
+                <li class="footer-list__item {{item.classes | join(' ')}}">
+                  <a class="footer-list__link" href="{{item.get_link}}">{{item.title}}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="footer__title">תשארו מחוברים</div>
+          <ul class="footer-list">
+            <li class="footer-list__item">
+              <a class="footer-list__link" target="_blank" href="{{facebook}}"><i class="fa fa-facebook-official" style="color: #3b5998"></i> פייסבוק </a>
+            </li>
+            <li class="footer-list__item">
+              <a class="footer-list__link" target="_blank" href="{{youtube}}"><i class="fa fa-youtube" style="color: #e94334"></i> יוטיוב </a>
+            </li>
+            <li class="footer-list__item">
+              <a class="footer-list__link" target="_blank" href="{{instagram}}" ><i class="fa fa-instagram" style="color: #71c495"></i> אינסטגרם </a>
+            </li>
+            <li class="footer-list__item">
+              <a class="footer-list__link" target="_blank" href="{{googleplus}}"><i class="fa fa-google-plus-square" style="color: #d52f2b"></i> גווגל פלוס </a>
+            </li>
+            <li class="footer-list__item">
+              <a class="footer-list__link" target="_blank" href="{{pinterest}}"><i class="fa fa-pinterest" style="color: #ff0000"></i> פינטרסט </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="footer__title">מידע נוסף</div>
+          <ul class="footer-list">
+            {% if menu_footer %}
+              {% for item in menu_footer.get_items %}
+                <li class="footer-list__item {{item.classes | join(' ')}}">
+                  <a class="footer-list__link" href="{{item.get_link}}"><i class="fa fa-link"></i> {{item.title}}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="footer__title">צרו איתנו קשר </div>
+          <div class="footer__text">
+            <a href="{{map}}" target="_blank">{{address}}</a><br>
+            פקס: {{fax}}<br>
+פלאפון:            <a href="tel:{{phone}}" rel="nofollow">{{phone}}</a><br>
+            <a href="mailto:{{email}}" rel="nofollow">{{email}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col text-right">{{ copyright }}</div>
+        <div class="col text-left">
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

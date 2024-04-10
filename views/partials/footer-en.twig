@@ -1,0 +1,77 @@
+<footer class="footer">
+  <div class="footer__top">
+    <div class="container">
+      <div class="row">
+        {{ fn('do_shortcode', '[contact-form-7 id="8" title="Contact Us"]') }}
+      </div>
+    </div>
+  </div>
+  <div class="footer__middle">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="footer__title">Links</div>
+          <ul class="footer-list">
+            {% if menu_additional %}
+              {% for item in menu_additional.get_items %}
+                <li class="footer-list__item {{item.classes | join(' ')}}">
+                  <a class="footer-list__link" href="{{item.get_link}}">{{item.title}}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="footer__title">Stay Connected</div>
+          <ul class="footer-list">
+            <li class="footer-list__item" target="_blank">
+              <a class="footer-list__link" href="{{facebook}}"><i class="fa fa-facebook-official" style="color: #3b5998"></i>facebook</a>
+            </li>
+            <li class="footer-list__item" target="_blank">
+              <a class="footer-list__link" href="{{youtube}}"><i class="fa fa-youtube" style="color: #e94334"></i>youtube</a>
+            </li>
+            <li class="footer-list__item" target="_blank">
+              <a class="footer-list__link" href="{{instagram}}"><i class="fa fa-instagram" style="color: #71c495"></i>instagram</a>
+            </li>
+            <li class="footer-list__item" target="_blank">
+              <a class="footer-list__link" href="{{googleplus}}"><i class="fa fa-google-plus-square" style="color: #d52f2b"></i>google +</a>
+            </li>
+            <li class="footer-list__item" target="_blank">
+              <a class="footer-list__link" href="{{pinterest}}"><i class="fa fa-pinterest" style="color: #ff0000"></i>pinterest</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="footer__title">More info</div>
+          <ul class="footer-list">
+            {% if menu_footer %}
+              {% for item in menu_footer.get_items %}
+                <li class="footer-list__item {{item.classes | join(' ')}}">
+                  <a class="footer-list__link" href="{{item.get_link}}"><i class="fa fa-link"></i> {{item.title}}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+        <div class="col-12 col-sm-3">
+          <div class="footer__title">Contact Us</div>
+          <div class="footer__text">
+            <a href="{{map}}" target="_blank">{{address_en}}</a><br>
+            Fax: {{fax}}<br>
+            Cell Phones: <a href="tel:{{phone}}" rel="nofollow">{{phone}}</a><br>
+            <a href="mailto:{{email}}" rel="nofollow">{{email}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col text-left">
+        </div>
+        <div class="col text-right">{{ copyright_en }}</div>
+      </div>
+    </div>
+  </div>
+</footer>

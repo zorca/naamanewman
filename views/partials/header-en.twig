@@ -1,0 +1,20 @@
+<header class="header" data-toggle="sticky-onscroll">
+  <div class="site_grid_container">
+    <nav class="nav-main">
+      {% if menu_primary %}
+        <ul id="menu-main" class="menu-main slimmenu">
+          {% for item in menu_primary.get_items %}
+            <li class="menu-main__item {{item.classes | join(' ')}}">
+              <a class="menu-main__link" href="{{item.get_link}}">{{item.title}}</a>
+              {% include "menus/menu.twig" with {'menu': item.get_children} %}
+            </li>
+          {% endfor %}
+          {{ language_switcher }}
+        </ul>
+      {% endif %}
+    </nav>
+    <div class="logo">
+      <div id="logo"><a href="{{site.url}}/"><img src="{{ fn('get_template_directory_uri') }}/assets/images/logo.png" alt="{{site.name}}" title="{{site.name}}"></a></div>
+    </div>
+  </div>
+</header>

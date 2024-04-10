@@ -1,0 +1,46 @@
+{% extends "layouts/base.twig" %}
+
+{% block page_header %}
+  <div class="page-header">
+    <img class="article-image" src="{{ fn('get_template_directory_uri') }}/assets/images/bg-shop.jpg" alt="{{title}}" title="{{title}}">
+    <div class="page-title-wrap">
+      <div class="container">
+        <h1 class="page-title">
+          {{title}}
+        </h1>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container">
+      <div class="content__inner">
+        <div class="row">
+          <div class="col col-big">
+            {{ fn('woocommerce_content') }}
+          </div>
+          <div class="col col-small">
+            <div class="sidebar-articles">
+              {% if language_code == 'he' %}
+                {{sidebar_articles}}
+              {% else %}
+                {{sidebar_articles_en}}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          {{ breadcrumbs }}
+        </div>
+        <div class="row">
+          {% include "partials/pagination.twig" %}
+        </div>
+        <div class="row">
+          {% include "partials/share.twig" %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

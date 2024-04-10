@@ -1,0 +1,9 @@
+<div class="pagination-block">
+  {% if post.prev %}
+    <a class="pagination-block__prev" href="{{post.prev.link}}">Prev</a>
+  {% endif %}
+    <a class="pagination-block__back" href="/articles/">Back</a>
+  {% if post.next %}
+    <a class="pagination-block__next" href="{{post.next.link}}">Next</a>
+  {% endif %}
+</div>

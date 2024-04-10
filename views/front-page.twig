@@ -1,0 +1,86 @@
+{% extends "layouts/front-base.twig" %}
+
+{% block custom_head %}
+{% endblock %}
+
+{% block slider %}
+  <div class="slider-wrap">
+    <div class="slideshow_elements_container">
+      <div class="slideshow_elements_content">
+        <a class="slideshow_elements_logo" href="http://www.naamanewman.co.il"><img src="{{ fn('get_template_directory_uri') }}/assets/images/logo-transparent.png" alt="Naama Newman bridal studio" title="Naama Newman bridal studio" style="display:block"></a>
+        <div class="slideshow_elements_info" style="display:block">
+          <a class="slideshow_elements_phone" href="tel:050-4660000" rel="nofollow">050-4660000</a>
+          <a class="slideshow_elements_email" href="mailto:n0504660000@gmail.com" rel="nofollow"></a>
+        </div>
+        <div class="slideshow_elements_text" style="display:block">
+          {{ slider_description }}
+        </div>
+        {% if slider_shop_label and slider_shop_link %}
+          <div class="slideshow_elements_info" style="display:block">
+            <a class="slideshow_elements_phone no_icon" href="{{slider_shop_link}}"><b>{{slider_shop_label}}</b></a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div id="main-slider" class="camera_wrap">
+      {% for slide in slider_slides %}
+        <div data-src="{{ fn('wp_get_attachment_image_src', slide.image, 'full')[0] }}">
+          <div class="camera_caption">{{ slide.title }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <a class="jumper" href="#content"><div class="slideshow_arrow_down_image"></div></a>
+  </div>Œ
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <div id="content" class="content">
+      <div class="container">
+        <div class="row">
+          {{post.content}}
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div id="carousel" class="carousel owl-carousel owl-theme">
+            {% for slide in carousel_slides %}
+              <a class="carousel__item" href="{{ fn('get_page_link', slide.link[0]) }}">
+                <div class="imageStyle">
+                  <img src="{{ fn('wp_get_attachment_image_src', slide.image, 'full')[0] }}" title="{{slide.title}}" alt="{{slide.title}}">
+                </div>
+                <h2 class="item_name">{{slide.title}}</h2>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        {% include "partials/share.twig" %}
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% block custom_foot %}
+  {% if language_code == 'he' %}{% include "partials/scripts-front-he.twig" %}{% endif %}
+  <script type="text/javascript">
+    (function($) {
+      $('#main-slider').camera({
+        height: 'auto',
+        minHeight: '400px',
+        autoAdvance: true,
+        time: 3000,
+        pagination: true,
+        thumbnails: false,
+        hover: false,
+        opacityOnGrid: true,
+        overlayer: false,
+        fx: 'simpleFade',
+        navigation: false,
+        playPause: false,
+        imagePath: '../images/'
+      });
+    })(jQuery);
+  </script>
+{% endblock %}

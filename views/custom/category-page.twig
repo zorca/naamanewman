@@ -1,0 +1,48 @@
+{% extends "layouts/base.twig" %}
+
+{% block page_header %}
+  {% for post in posts %}
+    <div class="page-header">
+      {% if post.thumbnail %}
+        <img class="page-header__image" src="{{post.thumbnail.src|resize(1920, 550, 'center')}}" alt="{{title}}" title="{{title}}">
+      {% else %}
+        <img class="page-header__image" src="{{ fn('get_template_directory_uri') }}/assets/images/bg-video.jpg" alt="{{title}}" title="{{title}}">
+      {% endif %}
+      <div class="page-title-wrap">
+        <div class="container">
+          <div class="row">
+            <h1 class="page-title">
+              {{title}}
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <div class="content content--category">
+      <div class="container">
+        <div class="row">
+          <h2 class="content__title content__title--category">{% if subtitle %}{{subtitle}}{% else %}{{title}}{% endif %}</h2>
+          {{post.content}}
+          <div class="category-page-list">
+            {% for child_page in post.children('page') %}
+              <a class="category-page-list__item" href="{{child_page.link}}">
+                <div class="page_item_img">
+                  <img class="img-fluid" src="{{TimberImage(child_page._category_icon).src|resize(310, 445)}}" alt="{{ child_page.post_title }}" title="{{ child_page.post_title }}">
+                </div>
+                <h3 class="category-page-list__item-title">{{ child_page.post_title }}</h3>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          {{ breadcrumbs }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

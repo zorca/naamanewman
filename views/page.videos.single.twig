@@ -1,0 +1,44 @@
+{% extends "layouts/base.twig" %}
+
+{% block page_header %}
+  {% for post in posts %}
+    <div class="page-header">
+      {% if post.thumbnail %}
+        <img src="{{post.thumbnail.src}}" alt="{{title}}" title="{{title}}">
+      {% else %}
+        <img src="{{ fn('get_template_directory_uri') }}/assets/images/bg-video.jpg" alt="{{title}}" title="{{title}}">
+      {% endif %}
+      <div class="page-title-wrap">
+        <div class="container">
+          <h1 class="page-title">{{title}}</h1>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <div class="content">
+      <div class="container">
+        <div class="content__inner">
+          <h2 class="content__title content__title--videos">{{title}}</h2>
+          <div class="content__full">{{post.content}}</div>
+          <div class="videos">
+            {% for video in videos_items %}
+              <div class="videos__item">
+                <div class="videos__iframe">
+                  {{ video.iframe }}
+                </div>
+                <div class="videos__title">{{ video.title }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          {% include "partials/share.twig" %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
